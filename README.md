@@ -26,3 +26,4 @@ Solenoide 12 V (1)
 Diodo 1N4004 (1)
 Resistencia 220 ohms (1)
 Conectores, soldadura y baquelita según diseño.
+![alt text](https://github.com/sebastianduran/cajing/blob/master/caja_bb.png)
