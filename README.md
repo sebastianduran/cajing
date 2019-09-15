@@ -12,7 +12,7 @@ Se abre arduino IDE y se escoje la placa, luego el puerto y se sube el archivo.
 Luego se realizan las conexiones según el esquematico presentado.  
 Para cambiar la clave se debe cambiar los valores del arrglo de caracteres:
 
-    char respuesta[4] = {'1','2','3','4'};respuesta[4] = {};
+    char respuesta[4] = {'1','2','3','4'};
     
  Y luego volver a programar.
 
