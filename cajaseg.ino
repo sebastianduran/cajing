@@ -14,7 +14,7 @@ char keys[countRows][countCols] = {
   {'1','2','3', 'A'},
   {'4','5','6', 'B'},
   {'7','8','9', 'C'},
-  {'#','0','*', 'D'}};
+  {'*','0','#', 'D'}};
 
 bool readKeypad(){
   bool rst = false;
@@ -22,7 +22,7 @@ bool readKeypad(){
     pinMode(colsPins[c], OUTPUT);
     digitalWrite(colsPins[c], LOW);
     for (byte r = 0; r < countRows; r++){
-      if (digitalRead(colsPins[r]) == LOW){
+      if (digitalRead(rowsPins[r]) == LOW){
         iRow = r;
         iCol = c;
         rst = true; 
@@ -57,9 +57,11 @@ void loop(){
     if (millis() - prevMillis > period){
       prevMillis = millis();
       if(readKeypad()){
-        Serial.println(keys[iRow][iCol]);
+        
         cadena[num]= (char) keys[iRow][iCol];
         num ++;
+        delay (300);
+        Serial.println(num);
         if (keys[iRow][iCol] == '*'){
             num = 0;
             resetCadena();
@@ -67,8 +69,9 @@ void loop(){
       }
     }
   }
-  if(strcmp(cadena, respuesta)==0){
-    digitalWrite(solenoidPin, LOW); 
+  Serial.println(cadena);
+  if(cadena[0]==respuesta[0] && cadena[1]==respuesta[1] && cadena[2]==respuesta[2] && cadena[3]==respuesta[3]){
+    digitalWrite(solenoidPin, HIGH); 
     cerrado = false;
     while(!cerrado){
       if(readKeypad()){
@@ -78,7 +81,7 @@ void loop(){
       }
     }
   }
-  digitalWrite(solenoidPin, HIGH); 
+  digitalWrite(solenoidPin, LOW); 
   resetCadena();
   num = 0;
 }
